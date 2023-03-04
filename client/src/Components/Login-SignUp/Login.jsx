@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#115293',
         },
         marginTop: theme.spacing(5),
-        padding:"14px"
+        padding: "14px"
     },
     googleButton: {
         margin: theme.spacing(1),
@@ -84,12 +84,23 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
     const classes = useStyles();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+
+    const [login, setLogin] = useState({
+        email: "",
+        password: ""
+    })
+
+    const handleChange = (e)=>{
+        setLogin({
+            ...login,
+            [e.target.name ] :e.target.value
+        })
+    }
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Email: ${email}, Password: ${password}`);
+        console.log(login)
     };
 
     return (
@@ -98,10 +109,10 @@ const Login = () => {
 
             <div className={classes.loginQuote} style={{ textAlign: "center", marginLeft: "5%" }}>
                 <div style={{ textAlign: "left", float: "left" }}>
-                    <h1 style={{ color: "white", marginRight:"40%", margin: "2rem 0", fontSize: "55px", fontFamily: "Helvetica, sans-serif", marginTop: "20px" }}>
-                        Your ultimate <span style={{color:"rgb(251 40 119)"}}>shopping</span> <br /> <span style={{color:"rgb(251 40 119)"}}>destination</span> awaits 🚲<br />
+                    <h1 style={{ color: "white", marginRight: "40%", margin: "2rem 0", fontSize: "55px", fontFamily: "Helvetica, sans-serif", marginTop: "20px" }}>
+                        Your ultimate <span style={{ color: "rgb(251 40 119)" }}>shopping</span> <br /> <span style={{ color: "rgb(251 40 119)" }}>destination</span> awaits 🚲<br />
                     </h1>
-                    <h4 style={{color:"rgb(851 80 119)",marginTop:"-25px"}}>Login to discover your dream vehicle!</h4>
+                    <h4 style={{ color: "rgb(851 80 119)", marginTop: "-25px" }}>Login to discover your dream vehicle!</h4>
 
                 </div>
             </div>
@@ -117,16 +128,18 @@ const Login = () => {
                             className={classes.inputField}
                             label=" Enter email adress"
                             variant="outlined"
-                            value={email}
-                            onChange={(event) => setEmail(event.target.value)}
+                            // value={login.email}
+                            name="email"
+                            onChange={handleChange}
                         />
                         <TextField
                             className={classes.inputField}
                             label=" Enter password"
                             variant="outlined"
                             type="password"
-                            value={password}
-                            onChange={(event) => setPassword(event.target.value)}
+                            // value={login.password}
+                            name="password"
+                            onChange={handleChange}
                         />
                     </CardContent>
                     <CardActions>
