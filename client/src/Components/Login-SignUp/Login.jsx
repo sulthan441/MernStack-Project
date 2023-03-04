@@ -14,14 +14,15 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-around',
         height: '100vh',
         backgroundImage: "url('https://images.unsplash.com/photo-1485965120184-e220f721d03e')",
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-       
-    },
+        // fontFamily: "'Karantina', cursive, 'Philosopher', sans-serif, 'Source Sans Pro', sans-serif, 'Trochut', cursive, 'Ubuntu', sans-serif",
+    }
+    ,
     card: {
         width: 350,
         backgroundColor: 'rgba(255, 255, 255, 0.9)',
@@ -55,8 +56,9 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: 'rgba(0, 0, 0, 0.3)',
             height: 1,
             marginLeft: theme.spacing(1),
-        },
+        }
     },
+
 
     button: {
         margin: theme.spacing(1),
@@ -65,6 +67,8 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: '#115293',
         },
+        marginTop: theme.spacing(5),
+        padding:"14px"
     },
     googleButton: {
         margin: theme.spacing(1),
@@ -72,7 +76,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         '&:hover': {
             backgroundColor: '#c7362c',
-        }
+        },
+        marginTop: theme.spacing(5)
     }
 
 }));
@@ -89,9 +94,24 @@ const Login = () => {
 
     return (
         <div className={classes.root}>
+
+
+            <div className={classes.loginQuote} style={{ textAlign: "center", marginLeft: "5%" }}>
+                <div style={{ textAlign: "left", float: "left" }}>
+                    <h1 style={{ color: "white", marginRight:"40%", margin: "2rem 0", fontSize: "55px", fontFamily: "Helvetica, sans-serif", marginTop: "20px" }}>
+                        Your ultimate <span style={{color:"rgb(251 40 119)"}}>shopping</span> <br /> <span style={{color:"rgb(251 40 119)"}}>destination</span> awaits 🚲<br />
+                    </h1>
+                    <h4 style={{color:"rgb(851 80 119)",marginTop:"-25px"}}>Login to discover your dream vehicle!</h4>
+
+                </div>
+            </div>
+
+
+
+
             <Card className={classes.card}>
                 <form onSubmit={handleSubmit}>
-                    <CardHeader  title="Login to ShopZen" style={{ fontWeight: 'bolder' }} />
+                    <CardHeader title={<h3 style={{ margin: "0" }} >Login to ShopZen</h3>} />
                     <CardContent>
                         <TextField
                             className={classes.inputField}
@@ -113,17 +133,17 @@ const Login = () => {
                         <Button
                             className={classes.submitButton}
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                             type="submit"
                         >
                             Login
                         </Button>
                     </CardActions>
                 </form>
-                <p style={{ fontSize: "10px", marginRight: "50%" }}>Do you have an account ? <span style={{ color: "red", cursor: "pointer" }}> </span></p>
+                <p style={{ fontSize: "12px", marginRight: "65%" }}>New here ?<span style={{ color: "red", cursor: "pointer" }}> SignUp </span></p>
 
                 <div className={classes.divider}>
-                    <span>Or login with</span>                  
+                    <span>Or login with</span>
                 </div>
                 <div style={{ justifyContent: "space-between", display: "flex" }}>
                     <Button className={classes.googleButton} fullWidth>
