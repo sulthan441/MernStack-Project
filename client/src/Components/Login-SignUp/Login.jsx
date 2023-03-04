@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
     ,
     card: {
         width: 350,
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        backgroundColor: 'rgb(255 244 245 / 85%)',
         padding: "20px",
         borderRadius: "7px",
         marginRight: theme.spacing(2),
+        // color:"white"
     },
     inputField: {
         width: '100%',
@@ -153,7 +154,7 @@ const Login = () => {
                         </Button>
                     </CardActions>
                 </form>
-                <p style={{ fontSize: "12px", marginRight: "65%" }}>New here ?<span style={{ color: "red", cursor: "pointer" }}> SignUp </span></p>
+                <p style={{ fontSize: "12px", marginRight: "65%" ,fontWeight:"600" }}>New here ?<span style={{ color: "crimson", cursor: "pointer" }}> SignUp </span></p>
 
                 <div className={classes.divider}>
                     <span>Or login with</span>
