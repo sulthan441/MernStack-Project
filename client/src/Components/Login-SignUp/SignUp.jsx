@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
   socialButton: {
     textTransform: 'none',
     margin: theme.spacing(1),
+    backgroundColor: 'primary',
+    color:"primary"
   },
   image: {
     width: '90%',
