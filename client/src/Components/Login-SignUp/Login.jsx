@@ -9,6 +9,13 @@ import {
     CardContent,
     CardActions,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+import store from '../../Redux/store';
+import signupReducer from '../../Redux/Reducer/Reducer';
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -84,6 +91,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = () => {
+
+
+    // const storeData = store.getState();
+    // console.log(storeData)
+
+    const user = useSelector(state=>state.users)
+    console.log(user)
     const classes = useStyles();
 
     const [login, setLogin] = useState({
@@ -154,7 +168,8 @@ const Login = () => {
                         </Button>
                     </CardActions>
                 </form>
-                <p style={{ fontSize: "12px", marginRight: "65%" ,fontWeight:"600" }}>New here ?<span style={{ color: "crimson", cursor: "pointer" }}> SignUp </span></p>
+               <p style={{ fontSize: "12px", marginRight: "65%" ,fontWeight:"600" }}>New here ?<span style={{ color: "crimson", cursor: "pointer" }}>  <Link to="/signup">SignUp</Link>  </span></p>
+            
 
                 <div className={classes.divider}>
                     <span>Or login with</span>
@@ -164,7 +179,7 @@ const Login = () => {
                         Google
                     </Button>
                     <Button className={classes.button} fullWidth>
-                        Facebook
+                        Facebook and 
                     </Button>
                 </div>
             </Card>

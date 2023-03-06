@@ -1,15 +1,27 @@
-import React from 'react';
+import React ,{useState} from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Typography,
   TextField,
   Button,
-  Link,
+  // Link,
   FormControlLabel,
   Checkbox,
 } from '@material-ui/core';
 
+
+
+
+import { signUpAction } from '../../Redux/Action/Action.js';
+import { Reducer, useDispatch } from 'react-redux';
+
+import store from '../../Redux/store';
+import { useSelector } from 'react-redux';
+
+import signupReducer from '../../Redux/Reducer/Reducer';
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: 'auto',
@@ -39,6 +51,74 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignupForm() {
+
+const dispatch = useDispatch();
+
+
+
+
+const [signUp,setSignUp]= useState({
+  username:"",
+  email:"",
+  password:"",
+  confirmPassword:"",
+})
+
+const handleSignUpChange =(e)=>{
+  e.preventDefault();
+  setSignUp({
+    ...signUp,
+    [e.target.name] : e.target.value
+  })
+}
+
+const handleSubmitButton = () => {
+
+
+
+
+  if (!signUp.username.trim()) {
+    // username is empty or contains only whitespace
+    alert('Please enter a valid username');
+    return;
+  }
+
+  if (!signUp.email.trim() || !/\S+@\S+\.\S+/.test(signUp.email)) {
+    // email is empty or invalid
+    alert('Please enter a valid email');
+    return;
+  }
+
+  if (!signUp.password.trim() || signUp.password.length < 6) {
+    // password is empty or less than 6 characters
+    alert('Please enter a valid password (at least 6 characters)');
+    return;
+  }
+
+  if (signUp.password !== signUp.confirmPassword) {
+    // password and confirm password do not match
+    alert('Password and confirm password do not match');
+    return;
+  }
+
+  // all edge cases passed, form can be submitted
+  alert('Registered SuccessFully');
+  // console.log(signUp)
+
+  dispatch(signUpAction(signUp))
+
+
+  // console.log(users)
+
+};
+
+
+
+
+
+
+
+
   const classes = useStyles();
 
   return (
@@ -65,6 +145,9 @@ export default function SignupForm() {
           variant="outlined"
           className={classes.formControl}
           fullWidth
+          onChange={handleSignUpChange}
+          name="username"
+          value={signUp.username}
         />
 
         <TextField
@@ -73,6 +156,9 @@ export default function SignupForm() {
           variant="outlined"
           className={classes.formControl}
           fullWidth
+          onChange={handleSignUpChange}
+          name="email"
+          value={signUp.email}
         />
 
         <TextField
@@ -83,6 +169,9 @@ export default function SignupForm() {
           variant="outlined"
           className={classes.formControl}
           fullWidth
+          onChange={handleSignUpChange}
+          name="password"
+          value={signUp.password}
         />
 
         <TextField
@@ -93,6 +182,9 @@ export default function SignupForm() {
           variant="outlined"
           className={classes.formControl}
           fullWidth
+          onChange={handleSignUpChange}
+          name="confirmPassword"
+          value={signUp.confirmPassword}
         />
 
         <FormControlLabel
@@ -105,15 +197,14 @@ export default function SignupForm() {
           variant="contained"
           color="primary"
           fullWidth
+          onClick={handleSubmitButton}
         >
           Sign Up
         </Button>
 
         <Grid container justify="center">
           <Grid item>
-            <Link href="#" variant="body2">
-              Already have an account? Log in
-            </Link>
+            <h4>Already have an account ?    <Link to="/login">Login</Link>         </h4>
           </Grid>
         </Grid>
 

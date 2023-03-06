@@ -2,13 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './Components/Login-SignUp/Login';
 import SignupPage from './Components/Login-SignUp/SignUp';
+import AllRoutes from './Pages/AllRoutes';
+import Navbar from './Components/Navbar/Navbar';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
     <div className="App">
-
-      {/* <Login/> */}
-      <SignupPage/>
+      <Navbar/>
+      <AllRoutes/>
+      <Footer/>
     </div>
   );
 }
